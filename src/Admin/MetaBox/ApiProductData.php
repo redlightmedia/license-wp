@@ -104,12 +104,12 @@ class ApiProductData {
 			'_icon_high'             => array(
 				'label'       => __( 'Icon (high resolution)', 'license-wp' ),
 				'type'        => 'file',
-				'description' => __( 'The plugin icon (high resolution 128x128 pixels).', 'license-wp' )
+				'description' => __( 'The plugin icon (high resolution 256x256 pixels).', 'license-wp' )
 			),
 			'_icon_low'             => array(
 				'label'       => __( 'Icon (low resolution)', 'license-wp' ),
 				'type'        => 'file',
-				'description' => __( 'The plugin icon (low resolution 64x64 pixels).', 'license-wp' )
+				'description' => __( 'The plugin icon (low resolution 128x128 pixels).', 'license-wp' )
 			)			
 		) );
 	}
