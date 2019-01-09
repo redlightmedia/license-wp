@@ -47,6 +47,18 @@ class ApiProduct {
 	/** @var string */
 	private $changelog = '';
 
+	/** @var string */
+	private $icon_high = '';
+
+	/** @var string */
+	private $icon_low = '';
+
+	/** @var string */
+	private $banner_high = '';
+
+	/** @var string */
+	private $banner_low = '';
+
 	/**
 	 * @return int
 	 */
@@ -227,6 +239,62 @@ class ApiProduct {
 	 */
 	public function set_changelog( $changelog ) {
 		$this->changelog = $changelog;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function get_icon_high() {
+		return $this->icon_high;
+	}
+
+	/**
+	 * @param string $icon_high
+	 */
+	public function set_icon_high( $icon_high ) {
+		$this->icon_high = $icon_high;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function get_icon_low() {
+		return $this->icon_low;
+	}
+
+	/**
+	 * @param string $icon_low
+	 */
+	public function set_icon_low( $icon_low ) {
+		$this->icon_low = $icon_low;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function get_banner_high() {
+		return $this->banner_high;
+	}
+
+	/**
+	 * @param string $icon_high
+	 */
+	public function set_banner_high( $banner_high ) {
+		$this->banner_high = $banner_high;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function get_banner_low() {
+		return $this->banner_low;
+	}
+
+	/**
+	 * @param string $banner_low
+	 */
+	public function set_banner_low( $banner_low ) {
+		$this->banner_low = $banner_low;
 	}
 
 	/**

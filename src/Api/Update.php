@@ -159,6 +159,10 @@ class Update {
 		$data->new_version = $api_product->get_version();
 		$data->url         = $api_product->get_uri();
 		$data->package     = $api_product->get_download_url( $license );
+		$data->icons 	   = maybe_serialize(array(
+			'1x'	=>	$api_product->get_icon_low(),
+			'2x'	=>	$api_product->get_icon_high()
+		));
 
 		// send data
 		$this->send_data( $data );
@@ -201,6 +205,14 @@ class Update {
 			$data->requires = $api_product->get_requires_at_least();
 			$data->tested   = $api_product->get_tested_up_to();
 			$data->homepage = $api_product->get_uri();
+			$data->banners 	   = maybe_serialize(array(
+				'high'	=>	$api_product->get_banner_high(),
+				'low'	=>	$api_product->get_banner_low()
+			));
+			$data->icons 	   = maybe_serialize(array(
+				'1x'	=>	$api_product->get_icon_low(),
+				'2x'	=>	$api_product->get_icon_high()
+			));
 
 			// set sections
 			$data->sections = array(

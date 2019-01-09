@@ -119,9 +119,16 @@ class Licenses extends Page {
 			$product = \wc_get_product( $product_id );
 
 			// product must be an API license product
-			if ( 'yes' !== get_post_meta( $product->get_parent_id(), '_is_api_product_license', true ) ) {
-				throw new \Exception( __( 'Invalid product', 'license-wp' ) );
+			if($wc_product->is_type('variable')){
+				if ( 'yes' !== get_post_meta( $product->get_parent_id(), '_is_api_product_license', true ) ) {
+					throw new \Exception( __( 'Invalid product', 'license-wp' ) );
+				}
+			}else{
+				if ( 'yes' !== get_post_meta( $product->id, '_is_api_product_license', true ) ) {
+					throw new \Exception( __( 'Invalid product', 'license-wp' ) );
+				}
 			}
+			
 
 			// set activation email to user email if no activation email is set
 			if ( ! $activation_email && $user_id ) {

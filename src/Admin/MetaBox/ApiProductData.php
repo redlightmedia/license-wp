@@ -90,7 +90,27 @@ class ApiProductData {
 			'_changelog'           => array(
 				'label' => __( 'Changelog', 'license-wp' ),
 				'type'  => 'textarea'
-			)
+			),
+			'_banner_high'             => array(
+				'label'       => __( 'Banner image (high resolution)', 'license-wp' ),
+				'type'        => 'file',
+				'description' => __( 'URL of a banner image to use (1544x500 pixels)', 'license-wp' )
+			),
+			'_banner_low'             => array(
+				'label'       => __( 'Banner image (low resolution)', 'license-wp' ),
+				'type'        => 'file',
+				'description' => __( 'URL of a banner image to use (772x250 pixels)', 'license-wp' )
+			),			
+			'_icon_high'             => array(
+				'label'       => __( 'Icon (high resolution)', 'license-wp' ),
+				'type'        => 'file',
+				'description' => __( 'The plugin icon (high resolution 128x128 pixels).', 'license-wp' )
+			),
+			'_icon_low'             => array(
+				'label'       => __( 'Icon (low resolution)', 'license-wp' ),
+				'type'        => 'file',
+				'description' => __( 'The plugin icon (low resolution 64x64 pixels).', 'license-wp' )
+			)			
 		) );
 	}
 
