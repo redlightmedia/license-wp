@@ -1,0 +1,856 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: License WP - WordPress Premium Licensing for "
+"WooCommerce\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-01-12 13:51+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/"
+
+#: templates/lost-license-email.php:12 templates/new-license-email.php:12
+#, php-format
+msgid "Hello %s,"
+msgstr ""
+
+#: templates/lost-license-email.php:14 templates/new-license-email.php:14
+msgid "Hi there,"
+msgstr ""
+
+#: templates/lost-license-email.php:16
+msgid "Your license keys and product download links are listed below."
+msgstr ""
+
+#: templates/lost-license-email.php:33 templates/new-license-email.php:31
+msgid "Download"
+msgstr ""
+
+#: templates/lost-license-email.php:42 templates/new-license-email.php:39
+msgid ""
+"You can manage your licenses and download your products from your My Account "
+"page."
+msgstr ""
+
+#: templates/lost-license-email.php:46 templates/new-license-email.php:43
+msgid "Best regards,"
+msgstr ""
+
+#: templates/lost-license-email.php:48 templates/new-license-email.php:45
+#, php-format
+msgid "The %s team"
+msgstr ""
+
+#: templates/my-licenses.php:5 src/Admin/Page/Licenses.php:17
+#: src/Admin/Page/Licenses.php:64
+msgid "Licenses"
+msgstr ""
+
+#: templates/my-licenses.php:9
+msgid "Product name"
+msgstr ""
+
+#: templates/my-licenses.php:10 src/Activation/ListTable.php:69
+#: src/License/ListTable.php:90
+msgid "License key"
+msgstr ""
+
+#: templates/my-licenses.php:11 assets/views/edit-license-form.php:90
+#: src/License/ListTable.php:95
+msgid "Activation limit"
+msgstr ""
+
+#: templates/my-licenses.php:12
+msgid "Download/Renew"
+msgstr ""
+
+#: templates/my-licenses.php:31
+#, php-format
+msgid "Activation email: %s"
+msgstr ""
+
+#: templates/my-licenses.php:34
+#, php-format
+msgid "Expiry date: %s."
+msgstr ""
+
+#: templates/my-licenses.php:36
+#, php-format
+msgid "Expired on %s"
+msgstr ""
+
+#: templates/my-licenses.php:43 src/License/ListTable.php:55
+#, php-format
+msgid "%d per product"
+msgstr ""
+
+#: templates/my-licenses.php:52 templates/upgrade-license-form.php:85
+msgid "Upgrade License"
+msgstr ""
+
+#: templates/my-licenses.php:57 templates/upgrade-license-form.php:51
+#: assets/views/html-license-data.php:26
+msgid "Unlimited"
+msgstr ""
+
+#: templates/my-licenses.php:62
+msgid "Renew License"
+msgstr ""
+
+#: templates/my-licenses.php:85 src/Activation/ListTable.php:101
+#: src/License/ListTable.php:128
+msgid "Deactivate"
+msgstr ""
+
+#: templates/upgrade-license-form-find-license.php:13
+msgid "Please enter your license key below to locate your license."
+msgstr ""
+
+#: templates/upgrade-license-form-find-license.php:16
+#: templates/upgrade-license-form.php:44
+msgid "License Key"
+msgstr ""
+
+#: templates/upgrade-license-form-find-license.php:21
+msgid "Find License"
+msgstr ""
+
+#: templates/new-license-email.php:16
+msgid "A license has just been created for you. The details are as follows:"
+msgstr ""
+
+#: templates/lost-license-form.php:16 assets/views/edit-license-form.php:74
+#: assets/views/add-license-form.php:75 src/License/ListTable.php:91
+msgid "Activation email"
+msgstr ""
+
+#: templates/lost-license-form.php:21
+msgid "Email my keys"
+msgstr ""
+
+#: templates/upgrade-license-form.php:39
+msgid ""
+"Please review your license data below and select the license you'd like to "
+"upgrade to."
+msgstr ""
+
+#: templates/upgrade-license-form.php:42 templates/upgrade-license-form.php:49
+msgid "Current License"
+msgstr ""
+
+#: templates/upgrade-license-form.php:51
+#, php-format
+msgid "%d websites per product"
+msgstr ""
+
+#: templates/upgrade-license-form.php:55
+msgid "Expiration Date"
+msgstr ""
+
+#: templates/upgrade-license-form.php:61
+msgid "Upgrade Options"
+msgstr ""
+
+#: templates/upgrade-license-form.php:63
+msgid "Select New License"
+msgstr ""
+
+#: templates/upgrade-license-form.php:74
+msgid "Price to Upgrade"
+msgstr ""
+
+#: templates/email-keys.php:3
+msgid "License Keys"
+msgstr ""
+
+#: templates/email-keys.php:17
+#, php-format
+msgid "Download %s"
+msgstr ""
+
+#: assets/views/edit-license-form.php:7
+#, php-format
+msgid "Edit License \"%s\""
+msgstr ""
+
+#: assets/views/edit-license-form.php:13 assets/views/add-license-form.php:14
+#: src/License/ListTable.php:92
+msgid "Product"
+msgstr ""
+
+#: assets/views/edit-license-form.php:16 assets/views/add-license-form.php:17
+msgid "Choose a product&hellip;"
+msgstr ""
+
+#: assets/views/edit-license-form.php:66
+msgid "Customer ID"
+msgstr ""
+
+#: assets/views/edit-license-form.php:69 assets/views/add-license-form.php:70
+msgid "Guest"
+msgstr ""
+
+#: assets/views/edit-license-form.php:77 assets/views/add-license-form.php:78
+msgid "Email address used to activate product"
+msgstr ""
+
+#: assets/views/edit-license-form.php:82 src/License/ListTable.php:93
+msgid "Order ID"
+msgstr ""
+
+#: assets/views/edit-license-form.php:85
+msgid "Order ID associated with this license"
+msgstr ""
+
+#: assets/views/edit-license-form.php:93
+msgid "Activation limit for this license (default is unlimited)"
+msgstr ""
+
+#: assets/views/edit-license-form.php:98
+msgid "Expires"
+msgstr ""
+
+#: assets/views/edit-license-form.php:101
+msgid "Date expires (default is never)"
+msgstr ""
+
+#: assets/views/edit-license-form.php:107
+msgid "Save License"
+msgstr ""
+
+#: assets/views/html-license-data.php:25
+msgid "License activation limit"
+msgstr ""
+
+#: assets/views/html-license-data.php:27
+msgid "The maximum number of activations allowed. Leave blank for unlimited."
+msgstr ""
+
+#: assets/views/html-license-data.php:38
+#: assets/views/html-variation-license-data.php:30
+msgid "License expiry amount"
+msgstr ""
+
+#: assets/views/html-license-data.php:39
+#: assets/views/html-variation-license-data.php:31
+msgid "Never expire"
+msgstr ""
+
+#: assets/views/html-license-data.php:40
+#: assets/views/html-variation-license-data.php:32
+msgid ""
+"How many days/months/years until the license expires. Leave blank for never."
+msgstr ""
+
+#: assets/views/html-license-data.php:51
+#: assets/views/html-variation-license-data.php:48
+msgid "License expiry type"
+msgstr ""
+
+#: assets/views/html-license-data.php:52
+#: assets/views/html-variation-license-data.php:49
+msgid "Days"
+msgstr ""
+
+#: assets/views/html-license-data.php:53
+#: assets/views/html-variation-license-data.php:50
+msgid "The date type used for license expiry amount."
+msgstr ""
+
+#: assets/views/add-license-form.php:7 assets/views/add-license-form.php:84
+#: src/Admin/Page/Licenses.php:66 src/Admin/Page/AddLicense.php:17
+msgid "Add License"
+msgstr ""
+
+#: assets/views/add-license-form.php:10
+msgid ""
+"Create a license manually using the form below. The license key will be "
+"generated automatically and will be emailed to the customer."
+msgstr ""
+
+#: assets/views/add-license-form.php:67
+msgid "Customer"
+msgstr ""
+
+#: src/Activation/ListTable.php:38 src/Activation/ListTable.php:40
+#: src/License/ListTable.php:47 src/License/ListTable.php:49
+#: src/License/ListTable.php:55 src/License/ListTable.php:57
+#: src/License/ListTable.php:59 src/License/ListTable.php:61
+msgid "n/a"
+msgstr ""
+
+#: src/Activation/ListTable.php:70 src/ApiProduct/PostType.php:107
+#: src/Admin/MetaBox/ApiProductData.php:44
+msgid "API Product ID"
+msgstr ""
+
+#: src/Activation/ListTable.php:71
+msgid "Activation date"
+msgstr ""
+
+#: src/Activation/ListTable.php:72
+msgid "Instance"
+msgstr ""
+
+#: src/Activation/ListTable.php:73
+msgid "Active?"
+msgstr ""
+
+#: src/Activation/ListTable.php:100
+msgid "Activate"
+msgstr ""
+
+#: src/Activation/ListTable.php:102 src/License/ListTable.php:129
+msgid "Delete"
+msgstr ""
+
+#: src/Activation/ListTable.php:125
+#, php-format
+msgid "%d activations activated"
+msgstr ""
+
+#: src/Activation/ListTable.php:131
+#, php-format
+msgid "%d activations deactivated"
+msgstr ""
+
+#: src/Activation/ListTable.php:137
+#, php-format
+msgid "%d activations deleted"
+msgstr ""
+
+#: src/WooCommerce/Upgrade.php:49 src/WooCommerce/Renewal.php:46
+#: src/ApiProduct/DownloadHandler.php:48
+msgid "Invalid license key."
+msgstr ""
+
+#: src/WooCommerce/Upgrade.php:54 src/WooCommerce/MyAccount.php:66
+#: src/WooCommerce/Renewal.php:51 src/ApiProduct/DownloadHandler.php:58
+msgid "This license does not appear to be yours."
+msgstr ""
+
+#: src/WooCommerce/Upgrade.php:59
+msgid "This product can't be found."
+msgstr ""
+
+#: src/WooCommerce/Upgrade.php:66 src/WooCommerce/Renewal.php:64
+msgid "This product can no longer be purchased"
+msgstr ""
+
+#: src/WooCommerce/Upgrade.php:83
+msgid "The product upgrade has been added to your cart."
+msgstr ""
+
+#: src/WooCommerce/Upgrade.php:111
+msgid "Upgrade"
+msgstr ""
+
+#: src/WooCommerce/Upgrade.php:164
+msgid "_upgrading_key"
+msgstr ""
+
+#: src/WooCommerce/MyAccount.php:56
+msgid "Invalid or expired license key."
+msgstr ""
+
+#: src/WooCommerce/MyAccount.php:61 src/ApiProduct/DownloadHandler.php:53
+#, php-format
+msgid "License has expired. You can renew it here: %s"
+msgstr ""
+
+#: src/WooCommerce/MyAccount.php:71 src/WooCommerce/Renewal.php:56
+#: src/ApiProduct/DownloadHandler.php:63
+msgid "Invalid activation email address."
+msgstr ""
+
+#: src/WooCommerce/MyAccount.php:80
+msgid "This appears to be not your activation."
+msgstr ""
+
+#: src/WooCommerce/MyAccount.php:85
+msgid "License successfully deactivated."
+msgstr ""
+
+#: src/WooCommerce/Renewal.php:76
+#, php-format
+msgid "The product has been added to your cart with a %d%% discount."
+msgstr ""
+
+#: src/WooCommerce/Renewal.php:99 src/WooCommerce/Renewal.php:119
+msgid "Renewal"
+msgstr ""
+
+#: src/WooCommerce/Renewal.php:136
+msgid "_renewing_key"
+msgstr ""
+
+#: src/WooCommerce/Order.php:33
+msgid "View license keys &rarr;"
+msgstr ""
+
+#: src/WooCommerce/Product.php:17
+msgid "API Product License"
+msgstr ""
+
+#: src/WooCommerce/Product.php:18
+msgid "Enable this option if this is a license for an API Product"
+msgstr ""
+
+#: src/WooCommerce/Product.php:195
+#, php-format
+msgid "Up to %d Websites"
+msgstr ""
+
+#: src/ApiProduct/DownloadHandler.php:68
+msgid "The order used to purchase this license has an invalid status."
+msgstr ""
+
+#: src/ApiProduct/DownloadHandler.php:84
+msgid "This license does not allow access to the requested product."
+msgstr ""
+
+#: src/ApiProduct/DownloadHandler.php:93
+msgid "Download package is missing."
+msgstr ""
+
+#: src/ApiProduct/DownloadHandler.php:113
+msgid "No file defined"
+msgstr ""
+
+#: src/ApiProduct/DownloadHandler.php:113
+#: src/ApiProduct/DownloadHandler.php:243
+msgid "Go to homepage"
+msgstr ""
+
+#: src/ApiProduct/DownloadHandler.php:243
+msgid "File not found"
+msgstr ""
+
+#: src/ApiProduct/PostType.php:15
+msgid "Plugin name"
+msgstr ""
+
+#: src/ApiProduct/PostType.php:43
+msgid "API Product"
+msgstr ""
+
+#: src/ApiProduct/PostType.php:44
+msgid "API Products"
+msgstr ""
+
+#: src/ApiProduct/PostType.php:51
+#, php-format
+msgid "All %s"
+msgstr ""
+
+#: src/ApiProduct/PostType.php:52
+msgid "Add New"
+msgstr ""
+
+#: src/ApiProduct/PostType.php:53
+#, php-format
+msgid "Add %s"
+msgstr ""
+
+#: src/ApiProduct/PostType.php:54
+msgid "Edit"
+msgstr ""
+
+#: src/ApiProduct/PostType.php:55
+#, php-format
+msgid "Edit %s"
+msgstr ""
+
+#: src/ApiProduct/PostType.php:56
+#, php-format
+msgid "New %s"
+msgstr ""
+
+#: src/ApiProduct/PostType.php:57 src/ApiProduct/PostType.php:58
+#, php-format
+msgid "View %s"
+msgstr ""
+
+#: src/ApiProduct/PostType.php:59
+#, php-format
+msgid "Search %s"
+msgstr ""
+
+#: src/ApiProduct/PostType.php:60
+#, php-format
+msgid "No %s found"
+msgstr ""
+
+#: src/ApiProduct/PostType.php:61
+#, php-format
+msgid "No %s found in trash"
+msgstr ""
+
+#: src/ApiProduct/PostType.php:62
+#, php-format
+msgid "Parent %s"
+msgstr ""
+
+#: src/ApiProduct/PostType.php:64
+msgid "This is where you can create and manage api products."
+msgstr ""
+
+#: src/ApiProduct/PostType.php:108 src/Admin/MetaBox/ApiProductData.php:51
+msgid "Version"
+msgstr ""
+
+#: src/ApiProduct/PostType.php:109
+msgid "Last updated"
+msgstr ""
+
+#: src/ApiProduct/PostType.php:110
+msgid "Package name"
+msgstr ""
+
+#: src/Api/Activation.php:40 src/Api/Activation.php:104
+msgid "Invalid API Request."
+msgstr ""
+
+#: src/Api/Activation.php:45
+msgid "<strong>Activation error:</strong> The provided license is invalid."
+msgstr ""
+
+#: src/Api/Activation.php:50
+msgid "<strong>Activation error:</strong> Invalid API Product ID."
+msgstr ""
+
+#: src/Api/Activation.php:59
+#, php-format
+msgid ""
+"<strong>Activation error:</strong> The provided license is invalid. <a "
+"href=\"%s\" target=\"_blank\">Purchase a valid license</a> to receive "
+"updates and support."
+msgstr ""
+
+#: src/Api/Activation.php:64
+#, php-format
+msgid ""
+"<strong>Activation error:</strong> Your license has expired. You must <a "
+"href=\"%s\" target=\"_blank\">renew your license</a> if you want to use it "
+"again."
+msgstr ""
+
+#: src/Api/Activation.php:69 src/Api/Update.php:63
+#, php-format
+msgid ""
+"<strong>Update error:</strong> The order used to purchase this license has "
+"an invalid status. <a href=\"%s\" target=\"_blank\">Purchase a valid "
+"license</a> to receive updates and support."
+msgstr ""
+
+#: src/Api/Activation.php:77
+#, php-format
+msgid ""
+"<strong>Activation error:</strong> This license does not allow access to the "
+"requested product. <a href=\"%s\" target=\"_blank\">Purchase a valid "
+"license</a> to receive updates and support."
+msgstr ""
+
+#: src/Api/Activation.php:85
+#, php-format
+msgid ""
+"<strong>Activation error:</strong> The email provided (%s) is invalid. "
+"Please enter the correct email address or <a href=\"%s\" target=\"_blank\">"
+"purchase a valid license</a> to receive updates and support."
+msgstr ""
+
+#: src/Api/Activation.php:157
+#, php-format
+msgid ""
+"<strong>Activation error:</strong> Activation limit reached. Please "
+"deactivate another website or upgrade your license at your <a href=\"%s\" "
+"target=\"_blank\">My Account page</a>."
+msgstr ""
+
+#: src/Api/Activation.php:201
+msgid ""
+"<strong>Activation error:</strong> Could not activate license key. Please "
+"contact support."
+msgstr ""
+
+#: src/Api/Activation.php:255
+msgid ""
+"Deactivation error: Could not deactivate license key. Please contact support."
+msgstr ""
+
+#: src/Api/Activation.php:270
+msgid "Deactivation error: instance not found."
+msgstr ""
+
+#: src/Api/Update.php:39
+msgid "<strong>Update error:</strong> No API Request set."
+msgstr ""
+
+#: src/Api/Update.php:44
+#, php-format
+msgid ""
+"<strong>Update error:</strong> No license key set. <a href=\"%s\" "
+"target=\"_blank\">Purchase a valid license</a> to receive updates and "
+"support."
+msgstr ""
+
+#: src/Api/Update.php:49
+msgid "<strong>Update error:</strong> No API Product ID set."
+msgstr ""
+
+#: src/Api/Update.php:58
+#, php-format
+msgid ""
+"<strong>Update error:</strong> The provided license is invalid. <a "
+"href=\"%s\" target=\"_blank\">Purchase a valid license</a> to receive "
+"updates and support."
+msgstr ""
+
+#: src/Api/Update.php:71
+#, php-format
+msgid ""
+"<strong>Update error:</strong> This license does not allow access to the "
+"requested product. <a href=\"%s\" target=\"_blank\">Purchase a valid "
+"license</a> to receive updates and support."
+msgstr ""
+
+#: src/Api/Update.php:76
+#, php-format
+msgid ""
+"<strong>Update error:</strong> License of <strong>%s</strong> has expired. "
+"You must <a href=\"%s\" target=\"_blank\">renew your license</a> if you want "
+"to use it again."
+msgstr ""
+
+#: src/Api/Update.php:98
+#, php-format
+msgid ""
+"<strong>Update error:</strong> License of <strong>%s</strong> is not "
+"activated on this website. Manage your activations on your <a href=\"%s\" "
+"target=\"_blank\">My Account page</a>."
+msgstr ""
+
+#: src/Shortcode/UpgradeLicenseForm.php:69
+#, php-format
+msgid ""
+"License with key %s has expired, please %srenew license%s before upgrading."
+msgstr ""
+
+#: src/Shortcode/UpgradeLicenseForm.php:75
+#, php-format
+msgid "License key %s could not be found, please try again."
+msgstr ""
+
+#: src/Shortcode/LostLicenseForm.php:39
+msgid "Invalid email address."
+msgstr ""
+
+#: src/Shortcode/LostLicenseForm.php:78
+#, php-format
+msgid "Your licenses have been emailed to %s."
+msgstr ""
+
+#: src/Shortcode/LostLicenseForm.php:80
+msgid "Your licenses could not be sent. Please contact us for support."
+msgstr ""
+
+#: src/Shortcode/LostLicenseForm.php:84
+msgid "No active licenses found."
+msgstr ""
+
+#: src/License/ListTable.php:94
+msgid "User ID"
+msgstr ""
+
+#: src/License/ListTable.php:96 src/Admin/Page/Activations.php:17
+#: src/Admin/Page/Activations.php:33
+msgid "Activations"
+msgstr ""
+
+#: src/License/ListTable.php:97
+msgid "Date created"
+msgstr ""
+
+#: src/License/ListTable.php:98
+msgid "Date expires"
+msgstr ""
+
+#: src/License/ListTable.php:153
+#, php-format
+msgid "%d keys deactivated"
+msgstr ""
+
+#: src/License/ListTable.php:160
+#, php-format
+msgid "%d keys deleted"
+msgstr ""
+
+#: src/Admin/Page/Licenses.php:105 src/Admin/Page/AddLicense.php:93
+msgid "Nonce check failed"
+msgstr ""
+
+#: src/Admin/Page/Licenses.php:110 src/Admin/Page/AddLicense.php:98
+msgid "You must choose a product for this license"
+msgstr ""
+
+#: src/Admin/Page/Licenses.php:115 src/Admin/Page/AddLicense.php:103
+msgid "Either an activation email or user ID is required"
+msgstr ""
+
+#: src/Admin/Page/Licenses.php:124 src/Admin/Page/Licenses.php:128
+#: src/Admin/Page/AddLicense.php:111
+msgid "Invalid product"
+msgstr ""
+
+#: src/Admin/Page/Licenses.php:141 src/Admin/Page/AddLicense.php:122
+msgid "A valid activation email is required"
+msgstr ""
+
+#: src/Admin/Page/AddLicense.php:174
+#, php-format
+msgid "License key has been emailed to %s."
+msgstr ""
+
+#: src/Admin/Page/AddLicense.php:178
+msgid "Could not create license!"
+msgstr ""
+
+#: src/Admin/MetaBox/ApiProductData.php:21
+msgid "API Product Data"
+msgstr ""
+
+#: src/Admin/MetaBox/ApiProductData.php:45
+msgid "your-plugin-name"
+msgstr ""
+
+#: src/Admin/MetaBox/ApiProductData.php:46
+msgid "A unique identifier for the API Product. Stored as the post_name."
+msgstr ""
+
+#: src/Admin/MetaBox/ApiProductData.php:52
+msgid "x.x.x"
+msgstr ""
+
+#: src/Admin/MetaBox/ApiProductData.php:53
+msgid "The current version number of the plugin."
+msgstr ""
+
+#: src/Admin/MetaBox/ApiProductData.php:56
+msgid "Date"
+msgstr ""
+
+#: src/Admin/MetaBox/ApiProductData.php:57
+msgid "yyyy-mm-dd"
+msgstr ""
+
+#: src/Admin/MetaBox/ApiProductData.php:58
+msgid "The date of the last update."
+msgstr ""
+
+#: src/Admin/MetaBox/ApiProductData.php:61
+msgid "Package"
+msgstr ""
+
+#: src/Admin/MetaBox/ApiProductData.php:63
+msgid "The plugin package zip file."
+msgstr ""
+
+#: src/Admin/MetaBox/ApiProductData.php:66
+msgid "Plugin URI"
+msgstr ""
+
+#: src/Admin/MetaBox/ApiProductData.php:69
+msgid "Author"
+msgstr ""
+
+#: src/Admin/MetaBox/ApiProductData.php:73
+msgid "Author URI"
+msgstr ""
+
+#: src/Admin/MetaBox/ApiProductData.php:77
+msgid "Requires at least"
+msgstr ""
+
+#: src/Admin/MetaBox/ApiProductData.php:78
+msgid "e.g. 3.8"
+msgstr ""
+
+#: src/Admin/MetaBox/ApiProductData.php:81
+msgid "Tested up to"
+msgstr ""
+
+#: src/Admin/MetaBox/ApiProductData.php:82
+msgid "e.g. 3.9"
+msgstr ""
+
+#: src/Admin/MetaBox/ApiProductData.php:85
+msgid "Description"
+msgstr ""
+
+#: src/Admin/MetaBox/ApiProductData.php:86
+msgid "Content describing the plugin"
+msgstr ""
+
+#: src/Admin/MetaBox/ApiProductData.php:91
+msgid "Changelog"
+msgstr ""
+
+#: src/Admin/MetaBox/ApiProductData.php:95
+msgid "Banner image (high resolution)"
+msgstr ""
+
+#: src/Admin/MetaBox/ApiProductData.php:97
+msgid "URL of a banner image to use (1544x500 pixels)"
+msgstr ""
+
+#: src/Admin/MetaBox/ApiProductData.php:100
+msgid "Banner image (low resolution)"
+msgstr ""
+
+#: src/Admin/MetaBox/ApiProductData.php:102
+msgid "URL of a banner image to use (772x250 pixels)"
+msgstr ""
+
+#: src/Admin/MetaBox/ApiProductData.php:105
+msgid "Icon (high resolution)"
+msgstr ""
+
+#: src/Admin/MetaBox/ApiProductData.php:107
+msgid "The plugin icon (high resolution 128x128 pixels)."
+msgstr ""
+
+#: src/Admin/MetaBox/ApiProductData.php:110
+msgid "Icon (low resolution)"
+msgstr ""
+
+#: src/Admin/MetaBox/ApiProductData.php:112
+msgid "The plugin icon (low resolution 64x64 pixels)."
+msgstr ""
+
+#. Name of the plugin
+msgid "License WP - WordPress Premium Licensing for WooCommerce"
+msgstr ""
+
+#. Description of the plugin
+msgid ""
+"A simple solution to plugin licencing. Define API Products separately, then "
+"sell licenses as products in WooCommerce which grant access to api products."
+msgstr ""
+
+#. URI of the plugin
+msgid "https://wordpress.org/plugins/license-wp/"
+msgstr ""
+
+#. Author of the plugin
+msgid "Mike Jolley & Barry Kooij"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "http://www.mikeandbarry.com"
+msgstr ""

@@ -6,7 +6,11 @@
     Version: 1.0.0
     Author: Mike Jolley & Barry Kooij
     Author URI: http://www.mikeandbarry.com
-    License: GPL v2
+	License: GPL v2
+	Text Domain: license-wp
+	Domain Path: /languages
+	WC requires at least: 3.0.0
+	WC tested up to: 3.5.3
 
 	Copyright 2015 - Never5
 
@@ -58,6 +62,8 @@ if ( $updatePhp->does_it_meet_required_php_version( PHP_VERSION ) ) {
 
 	// create plugin object
 	add_action( 'plugins_loaded', '__load_license_wp', 20 );
+
+	load_plugin_textdomain( 'license-wp', false, plugin_basename( __DIR__ ) . '/languages');
 
 	// Activation hook
 	register_activation_hook( __FILE__, array( 'Never5\\LicenseWP\\Installer', 'install' ) );
