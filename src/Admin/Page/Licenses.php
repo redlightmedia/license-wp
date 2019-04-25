@@ -14,7 +14,7 @@ class Licenses extends Page {
 	 * __construct
 	 */
 	public function __construct() {
-		parent::__construct( __( 'Licenses', 'license-wp' ), '55.8' );
+		parent::__construct( 'Licenses', '55.8' );
 
 		// handle save
 		add_action( 'init', function () {

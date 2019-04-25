@@ -14,7 +14,7 @@ class Manager {
 
 		// filter WooCommerce screen ID's
 		add_filter( 'woocommerce_screen_ids', function ( $ids ) {
-			$screen_id = strtolower( __( 'Licenses', 'woocommerce' ) );
+			$screen_id = strtolower( 'Licenses' );
 			$ids[]     = $screen_id . '_page_license_wp_add_license';
 			$ids[]     = 'toplevel_page_license_wp_licenses';
 			return $ids;
