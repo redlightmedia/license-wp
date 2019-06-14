@@ -79,20 +79,22 @@ class Activation {
 
 			switch ( $request['request'] ) {
 				case 'activate' :
+					$validate_email_on_activation = apply_filters( 'license_wp_validate_email_on_activation', true );
+					if( $validate_email_on_activation ){
+						// we do the email check here because email var is not passed for deactivations
+						$email_err_message = __( '<strong>Activation error:</strong> The email provided (%s) is invalid. Please enter the correct email address or <a href="%s" target="_blank">purchase a valid license</a> to receive updates and support.', 'license-wp' );
 
-					// we do the email check here because email var is not passed for deactivations
+						// check for email var
+						if ( ! isset( $request['email'] ) || empty( $request['email'] ) ) {
+							throw new ApiException( sprintf( $email_err_message, $request['email'], $purchase_url ), 103 );
+						}
 
-					$email_err_message = __( '<strong>Activation error:</strong> The email provided (%s) is invalid. Please enter the correct email address or <a href="%s" target="_blank">purchase a valid license</a> to receive updates and support.', 'license-wp' );
-
-					// check for email var
-					if ( ! isset( $request['email'] ) || empty( $request['email'] ) ) {
-						throw new ApiException( sprintf( $email_err_message, $request['email'], $purchase_url ), 103 );
+						// check if activation email is correct
+						if ( ! is_email( $request['email'] ) || $request['email'] != $license->get_activation_email() ) {
+							throw new ApiException( sprintf( $email_err_message, $request['email'], $purchase_url ), 103 );
+						}
 					}
-
-					// check if activation email is correct
-					if ( ! is_email( $request['email'] ) || $request['email'] != $license->get_activation_email() ) {
-						throw new ApiException( sprintf( $email_err_message, $request['email'], $purchase_url ), 103 );
-					}
+					
 
 					// activate the license
 					$this->activate( $license, $api_product, $request );
