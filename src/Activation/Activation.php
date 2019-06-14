@@ -103,7 +103,7 @@ class Activation {
 	 * @return string
 	 */
 	public function format_instance( $instance ) {
-		return str_replace( array( 'http://', 'https://', 'www.' ), '', trim( $instance ) );
+		return str_replace( array( 'http://', 'https://', 'www.' ), '', untrailingslashit ( trim( $instance ) ) );
 	}
 
 	/**
