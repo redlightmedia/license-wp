@@ -112,7 +112,8 @@ class Update {
 		} catch ( UpdateException $e ) {
 
 			$response = new \stdClass();
-
+			
+			$api_product = license_wp()->service( 'api_product_factory' )->make( $request['api_item_id'] );
 			switch ( $request['request'] ) {
 				case 'pluginupdatecheck' :
 					// $response->slug        = '';
