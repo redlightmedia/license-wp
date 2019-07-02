@@ -115,24 +115,61 @@ class Update {
 
 			switch ( $request['request'] ) {
 				case 'pluginupdatecheck' :
-					$response->slug        = '';
-					$response->plugin      = '';
-					$response->new_version = '';
-					$response->url         = '';
-					$response->package     = '';
+					// $response->slug        = '';
+					// $response->plugin      = '';
+					// $response->new_version = '';
+					// $response->url         = '';
+					// $response->package     = '';
+					$response->slug        = $request['api_product_id'];
+					$response->plugin      = $api_product->get_name();
+					$response->new_version = $api_product->get_version();
+					$response->url         = $api_product->get_uri();
+					$response->icons 	   = maybe_serialize(array(
+						'1x'	=>	$api_product->get_icon_low(),
+						'2x'	=>	$api_product->get_icon_high()
+					));
+					$response->download_link = '';
+					//$response->package     = '';
 					break;
 				case 'plugininformation' :
-					$response->name          = '';
-					$response->slug          = '';
-					$response->plugin        = '';
-					$response->version       = '';
-					$response->last_updated  = '';
+					// $response->name          = '';
+					// $response->slug          = '';
+					// $response->plugin        = '';
+					// $response->version       = '';
+					// $response->last_updated  = '';
+					// $response->download_link = '';
+					// $response->author        = '';
+					// $response->requires      = '';
+					// $response->tested        = '';
+					// $response->homepage      = '';
+					// $response->sections      = '';
+					$response->name          = $api_product->get_name();
+					$response->slug          = $request['api_product_id'];
+					$response->plugin        = $api_product->get_name();
+					$response->version       = $api_product->get_version();
+					$response->banners 	   = maybe_serialize(array(
+						'high'	=>	$api_product->get_banner_high(),
+						'low'	=>	$api_product->get_banner_low()
+					));
+					$response->icons 	   = maybe_serialize(array(
+						'1x'	=>	$api_product->get_icon_low(),
+						'2x'	=>	$api_product->get_icon_high()
+					));
+					$response->last_updated  = $api_product->get_date();
 					$response->download_link = '';
-					$response->author        = '';
-					$response->requires      = '';
-					$response->tested        = '';
-					$response->homepage      = '';
-					$response->sections      = '';
+					// set author
+					if ( '' != $api_product->get_author_uri() ) {
+						$response->author = '<a href="' . $api_product->get_author_uri() . '">' . $api_product->get_author() . '</a>';
+					} else {
+						$response->author = $api_product->get_author();
+					}
+					$response->requires = $api_product->get_requires_at_least();
+					$response->tested   = $api_product->get_tested_up_to();
+					$response->homepage = $api_product->get_uri();
+					$response->sections = array(
+						'description' => wpautop( \Parsedown::instance()->text( $api_product->get_description() ) ),
+						'changelog'   => \Parsedown::instance()->text( $api_product->get_changelog() )
+					);
 					break;
 			}
 
