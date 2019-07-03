@@ -131,7 +131,7 @@ class Activation {
 	private function activate( $license, $api_product, $request ) {
 
 		// Format the instance
-		$request['instance'] = str_replace( array( 'http://', 'https://' ), '', trim( $request['instance'] ) );
+		$request['instance'] = str_replace( array( 'http://', 'https://', 'www.' ), '', untrailingslashit ( trim( $request['instance'] ) ) );
 
 		// get all activation, including deactivated activations
 		$existing_activations = license_wp()->service( 'activation_manager' )->get_activations( $license, $api_product, false );
