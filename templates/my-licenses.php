@@ -31,9 +31,9 @@ if ( sizeof( $licenses ) > 0 ) : ?>
 						<?php printf( __( 'Activation email: %s', 'license-wp' ), $license->get_activation_email() ); ?><br/>
 						<?php if ( $license->get_date_expires() ) : ?>
 							<?php if ( ! $license->is_expired() ) : ?>
-								<?php printf( __( 'Expiry date: %s.', 'license-wp' ), $license->get_date_expires()->format( get_option( 'date_format' ) ) ); ?>
+								<?php printf( __( 'Expiry date: %s.', 'license-wp' ), date_i18n( get_option( 'date_format' ), strtotime($license->get_date_expires()->format( get_option( 'date_format' ) ) ) ) ); ?>
 							<?php else: ?>
-								<?php echo '<span style="color:#ff0000;font-weight:bold;">' . sprintf( __( 'Expired on %s', 'license-wp' ), $license->get_date_expires()->format( get_option( 'date_format' ) ) ) . '</span>'; ?>
+								<?php echo '<span style="color:#ff0000;font-weight:bold;">' . sprintf( __( 'Expired on %s', 'license-wp' ), date_i18n( get_option( 'date_format' ), strtotime($license->get_date_expires()->format( get_option( 'date_format' ) ) ) ) ) . '</span>'; ?>
 							<?php endif; ?>
 						<?php endif; ?>
 					</small>
@@ -82,7 +82,7 @@ if ( sizeof( $licenses ) > 0 ) : ?>
 			?>
 			<tr>
 				<td colspan="3" class="lwp_licenses_activation">
-					<?php echo get_the_title(  $activation->get_api_product_post_id() ); ?> &mdash; <a href="<?php echo esc_attr( $activation->get_instance() ); ?>" target="_blank"><?php echo esc_html( $activation->get_instance() ); ?></a> <a class="button" style="float:right" href="<?php echo $activation->get_deactivate_url($license); ?>"><?php _e( 'Deactivate', 'license-wp' ); ?></a>
+					<?php echo get_the_title(  $activation->get_api_product_post_id() ); ?> &mdash; <a href=" //<?php echo esc_attr( $activation->get_instance() ); ?>" target="_blank"><?php echo esc_html( $activation->get_instance() ); ?></a> <a class="button" style="float:right" href="<?php echo $activation->get_deactivate_url($license); ?>"><?php _e( 'Deactivate', 'license-wp' ); ?></a>
 				</td>
 			</tr>
 		<?php endforeach; ?>
