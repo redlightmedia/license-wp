@@ -97,6 +97,10 @@ class Plugin extends Pimple\Container {
 		$wc_email = new WooCommerce\Email();
 		$wc_email->setup();
 
+		// Rest Endpoint
+		$rest_endpoint = new Rest\Endpoint();
+		$rest_endpoint->setup();
+
 		// WooCommerce API Activation
 		$api_activation = new Api\Activation();
 		$api_activation->setup();
