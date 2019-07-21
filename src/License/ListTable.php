@@ -224,7 +224,7 @@ class ListTable extends \WP_List_Table {
 		$this->items = $wpdb->get_results( $wpdb->prepare( "
 			SELECT * FROM {$wpdb->lwp_licenses}
 			$where
-			{$search}
+			$search
 			ORDER BY `{$orderby}` {$order} LIMIT %d, %d
 		", ( $current_page - 1 ) * $per_page, $per_page ) );
 
