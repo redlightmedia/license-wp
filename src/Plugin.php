@@ -157,6 +157,12 @@ class Plugin extends Pimple\Container {
 			$renewals->setup();
 
 		}
+		// Add own email class to woocommerce list
+		add_filter('woocommerce_email_classes', function($email_classes) {
+			require_once license_wp()->service( 'file' )->plugin_path() . '/src/Email/ExpiredNoticeWcEmail.php';
+			$email_classes['License_WP_Expired_Notice_Email'] = new \License_WP_Expired_Notice_Email();
+			return $email_classes;
+		});
 
 	}
 

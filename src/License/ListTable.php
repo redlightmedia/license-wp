@@ -125,8 +125,9 @@ class ListTable extends \WP_List_Table {
 	 */
 	public function get_bulk_actions() {
 		$actions = array(
-			'deactivate' => __( 'Deactivate', 'license-wp' ),
-			'delete'     => __( 'Delete', 'license-wp' )
+			'deactivate' 			  => __( 'Deactivate', 'license-wp' ),
+			'delete'     			  => __( 'Delete', 'license-wp' ),
+			'send_expire_notice'     => __( 'Send Expire Notice', 'license-wp' ),
 		);
 
 		return $actions;
@@ -158,6 +159,18 @@ class ListTable extends \WP_List_Table {
 						$wpdb->delete( $wpdb->lwp_activations, array( 'license_key' => $id ) );
 					}
 					echo '<div class="updated"><p>' . sprintf( __( '%d keys deleted', 'license-wp' ), sizeof( $items ) ) . '</p></div>';
+					break;
+				case 'send_expire_notice' :
+					$i = 0;
+					foreach ( $items as $id ) {
+						$license = license_wp()->service( 'license_factory' )->make( $id );
+						if($license->is_expired()){
+							$email = WC()->mailer()->emails['License_WP_Expired_Notice_Email'];
+							$email->trigger( $id );
+							$i++;
+						}
+					}
+					echo '<div class="updated"><p>' . sprintf( __( '%d email reminders sent', 'license-wp' ),  $i  ) . '</p></div>';
 					break;
 			}
 		}
