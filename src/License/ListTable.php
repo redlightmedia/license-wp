@@ -196,6 +196,14 @@ class ListTable extends \WP_List_Table {
 
 		// process bulk action
 		$this->process_bulk_action();
+		$search = '';		
+
+		if ( ! empty( $_REQUEST['s'] ) ) {
+			$search = "AND activation_email LIKE '%" . esc_sql( $wpdb->esc_like( $_REQUEST['s'] ) ) . "%'";
+			$search .= "OR license_key LIKE '%" . esc_sql( $wpdb->esc_like( $_REQUEST['s'] ) ) . "%'";
+			$search .= "OR product_id LIKE '%" . esc_sql( $wpdb->esc_like( $_REQUEST['s'] ) ) . "%'";
+			$search .= "OR order_id LIKE '%" . esc_sql( $wpdb->esc_like( $_REQUEST['s'] ) ) . "%'";
+		}	
 
 		$where = array( 'WHERE 1=1' );
 
@@ -216,6 +224,7 @@ class ListTable extends \WP_List_Table {
 		$this->items = $wpdb->get_results( $wpdb->prepare( "
 			SELECT * FROM {$wpdb->lwp_licenses}
 			$where
+			{$search}
 			ORDER BY `{$orderby}` {$order} LIMIT %d, %d
 		", ( $current_page - 1 ) * $per_page, $per_page ) );
 

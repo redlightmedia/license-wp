@@ -67,6 +67,7 @@ class Licenses extends Page {
 
 			<form id="license-management" method="post">
 				<input type="hidden" name="page" value="license_wp_licenses"/>
+				<?php $list_table->search_box( __('Search','license-wp'), 'license-wp-licenses' ); ?>
 				<?php $list_table->display() ?>
 				<?php wp_nonce_field( 'save', 'license_wp_licensing_nonce' ); ?>
 			</form>
