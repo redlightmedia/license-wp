@@ -139,27 +139,27 @@ class ListTable extends \WP_List_Table {
 	 */
 	protected function get_views() { 
 		$views = array();
-		 $current = ( !empty($_REQUEST['customvar']) ? $_REQUEST['customvar'] : 'all');
+		 $current = ( !empty($_REQUEST['view']) ? $_REQUEST['view'] : 'all');
 	  
 		 //All link
 		 $class = ($current == 'all' ? ' class="current"' :'');
-		 $all_url = remove_query_arg('customvar');
+		 $all_url = remove_query_arg('view');
 		 $views['all'] = "<a href='{$all_url }' {$class} >All</a>";
-	  
-		 //Active link
-		 $foo_url = add_query_arg('customvar','active');
-		 $class = ($current == 'active' ? ' class="current"' :'');
-		 $views['active'] = "<a href='{$foo_url}' {$class} >Active</a>";
-	  
-		 //Inactive
-		 $bar_url = add_query_arg('customvar','inactive');
-		 $class = ($current == 'inactive' ? ' class="current"' :'');
-		 $views['inactive'] = "<a href='{$bar_url}' {$class} >Inactive</a>";
+
+		 //Unexpired
+		 $bar_url = add_query_arg('view','unexpired');
+		 $class = ($current == 'unexpired' ? ' class="current"' :'');
+		 $views['unexpired'] = "<a href='{$bar_url}' {$class} >Unexpired</a>";
 
 		 //Expired
-		 $bar_url = add_query_arg('customvar','expired');
+		 $bar_url = add_query_arg('view','expired');
 		 $class = ($current == 'expired' ? ' class="current"' :'');
 		 $views['expired'] = "<a href='{$bar_url}' {$class} >Expired</a>";
+
+		 //Lifetime
+		 $bar_url = add_query_arg('view','lifetime');
+		 $class = ($current == 'lifetime' ? ' class="current"' :'');
+		 $views['lifetime'] = "<a href='{$bar_url}' {$class} >Lifetime</a>";
 	  
 		 return $views;
 	  }
@@ -227,6 +227,23 @@ class ListTable extends \WP_List_Table {
 
 		// process bulk action
 		$this->process_bulk_action();
+		//Retrieve $view for use in query to get items.
+		$view = ( isset($_REQUEST['view']) ? $_REQUEST['view'] : '');
+		if($view != '') {
+			switch ($view){
+				case 'lifetime':
+					$search_custom_vars= "AND date_expires = '0000-00-00 00:00:00'";
+					break;
+				case 'unexpired':
+					$search_custom_vars= "AND date_expires > NOW()";
+					break;
+				case 'expired':
+					$search_custom_vars= "AND date_expires < NOW() AND date_expires != '0000-00-00 00:00:00'";
+					break;
+			}
+		} else	{
+			$search_custom_vars = '';
+		}
 		$search = '';		
 
 		if ( ! empty( $_REQUEST['s'] ) ) {
@@ -249,13 +266,23 @@ class ListTable extends \WP_List_Table {
 		$where = implode( ' ', $where );
 
 		// fetch matx
-		$max = $wpdb->get_var( "SELECT COUNT(license_key) FROM {$wpdb->lwp_licenses} $where;" );
+		$max = $wpdb->get_var( "SELECT COUNT(license_key) FROM {$wpdb->lwp_licenses} $where $search $search_custom_vars;" );
 
 		// fetch items
 		$this->items = $wpdb->get_results( $wpdb->prepare( "
-			SELECT * FROM {$wpdb->lwp_licenses}
+			SELECT *,
+			(CASE (SELECT COUNT(*) FROM {$wpdb->lwp_activations} WHERE license_key = {$wpdb->lwp_licenses}.license_key AND activation_active = 1)
+				WHEN  0 THEN 'inactive'
+				ELSE 'active'
+			END) as activations,
+			CASE date_expires
+				WHEN '0000-00-00 00:00:00' THEN 'lifetime'
+				ELSE IF(date_expires > NOW(), 'unexpired', 'expired')
+			END as license_status
+			FROM {$wpdb->lwp_licenses}
 			$where
 			$search
+			$search_custom_vars
 			ORDER BY `{$orderby}` {$order} LIMIT %d, %d
 		", ( $current_page - 1 ) * $per_page, $per_page ) );
 
