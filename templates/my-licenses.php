@@ -31,9 +31,9 @@ if ( sizeof( $licenses ) > 0 ) : ?>
 						<?php printf( __( 'Activation email: %s', 'license-wp' ), $license->get_activation_email() ); ?><br/>
 						<?php if ( $license->get_date_expires() ) : ?>
 							<?php if ( ! $license->is_expired() ) : ?>
-								<?php printf( __( 'Expiry date: %s.', 'license-wp' ), date_i18n( get_option( 'date_format' ), strtotime($license->get_date_expires()->format( get_option( 'date_format' ) ) ) ) ); ?>
+								<?php printf( __( 'Expiry date: %s.', 'license-wp' ), date_i18n( get_option( 'date_format' ), strtotime( $license->get_date_expires()->format('Y-m-d H:i:s') ) )); ?>
 							<?php else: ?>
-								<?php echo '<span style="color:#ff0000;font-weight:bold;">' . sprintf( __( 'Expired on %s', 'license-wp' ), date_i18n( get_option( 'date_format' ), strtotime($license->get_date_expires()->format( get_option( 'date_format' ) ) ) ) ) . '</span>'; ?>
+								<?php echo '<span style="color:#ff0000;font-weight:bold;">' . sprintf( __( 'Expired on %s', 'license-wp' ), date_i18n( get_option( 'date_format' ), strtotime( $license->get_date_expires()->format('Y-m-d H:i:s') ) ) )  . '</span>'; ?>
 							<?php endif; ?>
 						<?php endif; ?>
 					</small>

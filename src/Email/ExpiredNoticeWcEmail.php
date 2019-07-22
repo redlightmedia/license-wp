@@ -146,8 +146,8 @@ if ( ! class_exists( 'License_WP_Expired_Notice_Email' ) ) {
                 }
 
                 $this->placeholders['{product}']                 = $wc_product->get_title();
-                $this->placeholders['{license_key}']             = $license->get_key();
-                $this->placeholders['{license_expiration_date}'] = $license->get_date_expires() ? date_i18n( get_option( 'date_format' ), strtotime($license->get_date_expires()->format( get_option( 'date_format' ) ) ) ) : '';
+                $this->placeholders['{license_key}']             = $license->get_key(); 
+                $this->placeholders['{license_expiration_date}'] = $license->get_date_expires() ? date_i18n( get_option( 'date_format' ), strtotime( $license->get_date_expires()->format('Y-m-d H:i:s') ) ) : '';
                 $this->placeholders['{renewal_link}']            = apply_filters( 'license_wp_license_renewal_url_email', $license->get_renewal_url(), $license );
 
                 $result = $this->send( $customer_email, $this->get_subject(), $this->get_content(), $this->get_headers(), []);
