@@ -64,7 +64,7 @@ class Licenses extends Page {
 			<h2><?php _e( 'Licenses', 'license-wp' ); ?> <a
 					href="<?php echo admin_url( 'admin.php?page=license_wp_add_license' ); ?>"
 					class="add-new-h2"><?php _e( 'Add License', 'license-wp' ); ?></a></h2>
-
+			<?php $list_table->views() ?>
 			<form id="license-management" method="post">
 				<input type="hidden" name="page" value="license_wp_licenses"/>
 				<?php $list_table->search_box( __('Search','license-wp'), 'license-wp-licenses' ); ?>
