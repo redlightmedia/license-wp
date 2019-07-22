@@ -134,6 +134,37 @@ class ListTable extends \WP_List_Table {
 	}
 
 	/**
+	 * get_views
+	 * @return array
+	 */
+	protected function get_views() { 
+		$views = array();
+		 $current = ( !empty($_REQUEST['customvar']) ? $_REQUEST['customvar'] : 'all');
+	  
+		 //All link
+		 $class = ($current == 'all' ? ' class="current"' :'');
+		 $all_url = remove_query_arg('customvar');
+		 $views['all'] = "<a href='{$all_url }' {$class} >All</a>";
+	  
+		 //Active link
+		 $foo_url = add_query_arg('customvar','active');
+		 $class = ($current == 'active' ? ' class="current"' :'');
+		 $views['active'] = "<a href='{$foo_url}' {$class} >Active</a>";
+	  
+		 //Inactive
+		 $bar_url = add_query_arg('customvar','inactive');
+		 $class = ($current == 'inactive' ? ' class="current"' :'');
+		 $views['inactive'] = "<a href='{$bar_url}' {$class} >Inactive</a>";
+
+		 //Expired
+		 $bar_url = add_query_arg('customvar','expired');
+		 $class = ($current == 'expired' ? ' class="current"' :'');
+		 $views['expired'] = "<a href='{$bar_url}' {$class} >Expired</a>";
+	  
+		 return $views;
+	  }
+
+	/**
 	 * Process bulk actions
 	 */
 	public function process_bulk_action() {
