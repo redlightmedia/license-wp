@@ -26,9 +26,13 @@ if ( sizeof( $licenses ) > 0 ) : ?>
 			<tr>
 				<td rowspan="<?php echo( ( ! $license->is_expired() ) ? sizeof( $activations ) + 1 : 1 ); ?>" class="lwp_licenses_name"><?php echo esc_html( $wc_product->post_title ); ?></td>
 				<td class="lwp_licenses_code">
+					<?php do_action( 'lwp_my_licenses_before_license_key', $license, $wc_product ); ?>
 					<code style="display:block;"><?php echo $license->get_key(); ?></code>
+					<?php do_action( 'lwp_my_licenses_after_license_key', $license, $wc_product ); ?>
 					<small>
+						<?php do_action( 'lwp_my_licenses_before_activation_email', $license, $wc_product ); ?>
 						<?php printf( __( 'Activation email: %s', 'license-wp' ), $license->get_activation_email() ); ?><br/>
+						<?php do_action( 'lwp_my_licenses_after_activation_email', $license, $wc_product ); ?>
 						<?php if ( $license->get_date_expires() ) : ?>
 							<?php if ( ! $license->is_expired() ) : ?>
 								<?php printf( __( 'Expiry date: %s.', 'license-wp' ), date_i18n( get_option( 'date_format' ), strtotime( $license->get_date_expires()->format('Y-m-d H:i:s') ) )); ?>
@@ -36,6 +40,7 @@ if ( sizeof( $licenses ) > 0 ) : ?>
 								<?php echo '<span style="color:#ff0000;font-weight:bold;">' . sprintf( __( 'Expired on %s', 'license-wp' ), date_i18n( get_option( 'date_format' ), strtotime( $license->get_date_expires()->format('Y-m-d H:i:s') ) ) )  . '</span>'; ?>
 							<?php endif; ?>
 						<?php endif; ?>
+						<?php do_action( 'lwp_my_licenses_after_date', $license, $wc_product ); ?>
 					</small>
 				</td>
 				<td class="lwp_licenses_activation_limit"><?php
