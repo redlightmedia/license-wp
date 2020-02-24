@@ -64,13 +64,14 @@ class Order {
 					$parent_order_id = $subscription->get_parent_id();
 
 					$licenses = license_wp()->service( 'license_manager' )->get_licenses_by_order( $parent_order_id );
+
 					// count and loop
 					if ( count( $licenses ) > 0 ) {
 						foreach ( $licenses as $license ) {
 							/**
 							 * @var \Never5\LicenseWP\License\License $license
 							 */
-							$previous_license_keys[ $license->get_product_id() ] = array( 'action' => $key_action, 'key' => $license->get_key() );
+							$previous_license_keys[ $license->get_product_id() ][] = array( 'action' => $key_action, 'key' => $license->get_key() );
 						}
 					}
 				}
@@ -149,28 +150,30 @@ class Order {
 
 					// check for standard product renewing
 					if ( ! isset( $previous_license_keys[ $product->get_id() ] ) && ! empty( $item['item_meta']['_renewing_key'] ) ) {
-						$previous_license_keys[ $product->get_id() ] = array( 'key' => $item['item_meta']['_renewing_key'],  'action' => self::KEY_ACTION_RENEW  );
+						$previous_license_keys[ $product->get_id() ][] = array( 'key' => $item['item_meta']['_renewing_key'],  'action' => self::KEY_ACTION_RENEW  );
 					}
 
 					// check on renewal
 					if ( isset( $previous_license_keys[ $product->get_id() ] ) ) {
-						$previous_license_record = $previous_license_keys[ $product->get_id() ];
-						$previous_license_key = $previous_license_record['key'];
-						$previous_license_action = $previous_license_record['action'];
+						foreach($previous_license_keys[ $product->get_id() ] as $license ){
+							$previous_license_record = $license;
+							$previous_license_key = $license['key'];
+							$previous_license_action = $license['action'];
 
-						// get license
-						/** @var \Never5\LicenseWP\License\License $license */
-						$license = license_wp()->service( 'license_factory' )->make( $previous_license_key );
+							// get license
+							/** @var \Never5\LicenseWP\License\License $license */
+							$license = license_wp()->service( 'license_factory' )->make( $previous_license_key );
 
-						// set new expiration date
-						if ( $previous_license_action === self::KEY_ACTION_RENEW && ! empty( $expiry_modify_string ) ) {
-							$renew_datetime = (  ! $license->is_expired() ) ? $license->get_date_expires() : new \DateTime();
-							$license->set_date_expires( $renew_datetime->setTime( 0, 0, 0 )->modify( $expiry_modify_string ) );
+							// set new expiration date
+							if ( $previous_license_action === self::KEY_ACTION_RENEW && ! empty( $expiry_modify_string ) ) {
+								$renew_datetime = (  ! $license->is_expired() ) ? $license->get_date_expires() : new \DateTime();
+								$license->set_date_expires( $renew_datetime->setTime( 0, 0, 0 )->modify( $expiry_modify_string ) );
+							}
+
+							// store license
+							license_wp()->service( 'license_repository' )->persist( $license );
+							do_action( 'lwp_renewal_license', $license, $order, $item); 
 						}
-
-						// store license
-						license_wp()->service( 'license_repository' )->persist( $license );
-						do_action( 'lwp_renewal_license', $license, $order, $item); 
 					} else if ( $_upgrading_key ) {
 
 						// get license
