@@ -64,13 +64,14 @@ class Order {
 					$parent_order_id = $subscription->get_parent_id();
 
 					$licenses = license_wp()->service( 'license_manager' )->get_licenses_by_order( $parent_order_id );
-
-					if ( ! empty( $licenses ) ) {
-						/**
-						 * @var \Never5\LicenseWP\License\License $license
-						 */
-						$license = array_shift( $licenses );
-						$previous_license_keys[ $license->get_product_id() ] = array( 'action' => $key_action, 'key' => $license->get_key() );
+					// count and loop
+					if ( count( $licenses ) > 0 ) {
+						foreach ( $licenses as $license ) {
+							/**
+							 * @var \Never5\LicenseWP\License\License $license
+							 */
+							$previous_license_keys[ $license->get_product_id() ] = array( 'action' => $key_action, 'key' => $license->get_key() );
+						}
 					}
 				}
 			}
