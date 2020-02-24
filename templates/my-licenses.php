@@ -22,9 +22,11 @@ if ( sizeof( $licenses ) > 0 ) : ?>
 
 			// get activations
 			$activations = $license->get_activations();
+
+			$rowspan = apply_filters('lwp_my_licenses_default_rowspan', 1 , $license, $wc_product);
 			?>
 			<tr>
-				<td rowspan="<?php echo( ( ! $license->is_expired() ) ? sizeof( $activations ) + 1 : 1 ); ?>" class="lwp_licenses_name"><?php echo esc_html( $wc_product->post_title ); ?></td>
+				<td rowspan="<?php echo( ( ! $license->is_expired() ) ? sizeof( $activations ) + $rowspan : 1 ); ?>" class="lwp_licenses_name"><?php echo esc_html( $wc_product->post_title ); ?></td>
 				<td class="lwp_licenses_code">
 					<?php do_action( 'lwp_my_licenses_before_license_key', $license, $wc_product ); ?>
 					<code style="display:block;"><?php echo $license->get_key(); ?></code>
@@ -81,6 +83,7 @@ if ( sizeof( $licenses ) > 0 ) : ?>
 					?></td>
 			</tr>
 			<?php if( ! $license->is_expired() ) : ?>
+			<?php do_action( 'lwp_my_licenses_before_license_activations', $license, $wc_product ); ?>
 			<?php foreach ( $activations as $activation ) : ?>
 			<?php
 			/** @var \Never5\LicenseWP\Activation\Activation $activation */
@@ -90,8 +93,9 @@ if ( sizeof( $licenses ) > 0 ) : ?>
 					<?php echo get_the_title(  $activation->get_api_product_post_id() ); ?> &mdash; <a href=" //<?php echo esc_attr( $activation->get_instance() ); ?>" target="_blank"><?php echo esc_html( $activation->get_instance() ); ?></a> <a class="button" style="float:right" href="<?php echo $activation->get_deactivate_url($license); ?>"><?php _e( 'Deactivate', 'license-wp' ); ?></a>
 				</td>
 			</tr>
-		<?php endforeach; ?>
-		<?php endif; ?>
+			<?php endforeach; ?>
+			<?php do_action( 'lwp_my_licenses_after_license_activations', $license, $wc_product ); ?>
+			<?php endif; ?>
 		<?php endforeach; ?>
 		</tbody>
 	</table>
