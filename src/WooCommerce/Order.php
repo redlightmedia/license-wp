@@ -170,7 +170,7 @@ class Order {
 
 						// store license
 						license_wp()->service( 'license_repository' )->persist( $license );
-
+						do_action( 'lwp_renewal_license', $license, $order, $item); 
 					} else if ( $_upgrading_key ) {
 
 						// get license
@@ -203,6 +203,8 @@ class Order {
 						// store license
 						license_wp()->service( 'license_repository' )->persist( $license );
 
+						do_action( 'lwp_upgrading_license', $license, $order, $item); 
+
 					} else { // no renewal, no upgrade, new key
 
 						// Generate new keys
@@ -231,7 +233,7 @@ class Order {
 
 							// store license
 							license_wp()->service( 'license_repository' )->persist( $license );
-
+							do_action( 'lwp_create_license', $license, $order, $item); 
 						}
 
 					}
