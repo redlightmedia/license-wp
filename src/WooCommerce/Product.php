@@ -94,29 +94,29 @@ class Product {
 				echo '<table class="lwp-plugin-information">';
 					if( $rating_count >= 0 && false ){
 						echo '<tr class="lwp-plugin-information-attribute-item lwp-plugin-information-item--review-amount">';
-							echo '<th class="lwp-plugin-information-attributes-item__label">' . __('Number of Reviews') .'</th>';
+							echo '<th class="lwp-plugin-information-attributes-item__label">' . __('Number of Reviews','license-wp') .'</th>';
 							echo '<td class="lwp-plugin-information-attributes-item__value">' . $review_count . '</td>';
 						echo '</tr>';
 						echo '<tr class="lwp-plugin-information-attribute-item lwp-plugin-information-item--average-rating">';
-							echo '<th class="lwp-plugin-information-attributes-item__label">' . __('Average Review Rating') .'</th>';
+							echo '<th class="lwp-plugin-information-attributes-item__label">' . __('Average Review Rating','license-wp') .'</th>';
 							echo '<td class="lwp-plugin-information-attributes-item__value">' . $average . '</td>';
 						echo '</tr>';
 					}
 					if( !empty( $api_product->get_name() ) && false ){
 						echo '<tr class="lwp-plugin-information-attribute-item lwp-plugin-information-item--name">';
-							echo '<th class="lwp-plugin-information-attributes-item__label">' . __('Plugin Name') .'</th>';
+							echo '<th class="lwp-plugin-information-attributes-item__label">' . __('Plugin Name','license-wp') .'</th>';
 							echo '<td class="lwp-plugin-information-attributes-item__value">' . wp_kses_post( $api_product->get_name() ) . '</td>';
 						echo '</tr>';
 					}
 					if( !empty( $api_product->get_version() ) ){
 						echo '<tr class="lwp-plugin-information- lwp-plugin-information-item--version">';
-							echo '<th class="lwp-plugin-information-attributes-item__label">' . __('Latest Version') .'</th>';
+							echo '<th class="lwp-plugin-information-attributes-item__label">' . __('Latest Version','license-wp') .'</th>';
 							echo '<td class="lwp-plugin-information-attributes-item__value">' . wp_kses_post( $api_product->get_version() ) . '</td>';
 						echo '</tr>';
 					}
 					if( !empty( $api_product->get_installation_instruction() ) ){
 						echo '<tr class="lwp-plugin-information-attribute-item lwp-plugin-information-attribute-item--date">';
-							echo '<th class="lwp-plugin-information-attributes-item__label">' . __('Get started') .'</th>';
+							echo '<th class="lwp-plugin-information-attributes-item__label">' . __('Get started','license-wp') .'</th>';
 							echo '<td class="lwp-plugin-information-attributes-item__value"><a href="' . wp_kses_post( $api_product->get_installation_instruction() ) . '">' . wp_kses_post( $api_product->get_installation_instruction() ) . '</a></td>';
 						echo '</tr>';
 					}
