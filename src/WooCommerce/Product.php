@@ -43,7 +43,7 @@ class Product {
 
 		if($product->is_type('variable')){
 			if ( 'yes' !== get_post_meta( $product->get_parent_id(), '_is_api_product_license', true ) ) {
-				return $tabs;
+				//return $tabs;
 			}
 		}else{
 			if ( 'yes' !== get_post_meta( $product->id, '_is_api_product_license', true ) ) {
