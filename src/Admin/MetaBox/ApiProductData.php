@@ -91,6 +91,11 @@ class ApiProductData {
 				'label' => __( 'Changelog', 'license-wp' ),
 				'type'  => 'textarea'
 			),
+			'_installation_instruction'           => array(
+				'label' => __( 'Link to installation guide', 'license-wp' ),
+				'description' => __( 'If entered, it will be visible on product page.', 'license-wp' ),
+				'type'  => 'text'
+			),
 			'_banner_high'             => array(
 				'label'       => __( 'Banner image (high resolution)', 'license-wp' ),
 				'type'        => 'file',

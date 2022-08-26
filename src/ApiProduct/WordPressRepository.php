@@ -32,6 +32,7 @@ class WordPressRepository implements Repository {
 			$data->tested_up_to      = get_post_meta( $post->ID, '_tested_wp_version', true );
 			$data->description       = $post->post_content;
 			$data->changelog         = get_post_meta( $post->ID, '_changelog', true );
+			$data->installation_instruction = get_post_meta( $post->ID, '_installation_instruction', true );
 			$data->icon_high         = get_post_meta( $post->ID, '_icon_high', true );
 			$data->icon_low        	 = get_post_meta( $post->ID, '_icon_low', true );
 			$data->banner_high       = get_post_meta( $post->ID, '_banner_high', true );
@@ -87,6 +88,7 @@ class WordPressRepository implements Repository {
 		update_post_meta( $product->get_id(), '_requires_wp_version', $product->get_requires_at_least() );
 		update_post_meta( $product->get_id(), '_tested_wp_version', $product->get_tested_up_to() );
 		update_post_meta( $product->get_id(), '_changelog', $product->get_changelog() );
+		update_post_meta( $product->get_id(), '_installation_instruction', $product->get_installation_instruction() );
 		update_post_meta( $product->get_id(), '_icon_high', $product->get_icon_high() );
 		update_post_meta( $product->get_id(), '_icon_low', $product->get_icon_low() );
 		update_post_meta( $product->get_id(), '_banner_high', $product->get_banner_high() );

@@ -29,6 +29,121 @@ class Product {
 		add_action( 'woocommerce_product_after_variable_attributes', array( $this, 'variable_license_data' ), 10, 3 );
 		add_action( 'woocommerce_save_product_variation', array( $this, 'save_variable_license_data' ), 10, 2 );
 
+		//Product Page
+		add_filter( 'woocommerce_product_tabs', array( $this, 'plugin_data_tab' ), 10 );
+
+
+	}
+
+	/**
+	 * Adds 'About the plugin tab'
+	 */
+	public function plugin_data_tab( $tabs ) {
+		global $product;
+
+		if($product->is_type('variable')){
+			if ( 'yes' !== get_post_meta( $product->get_parent_id(), '_is_api_product_license', true ) ) {
+				return $tabs;
+			}
+		}else{
+			if ( 'yes' !== get_post_meta( $product->id, '_is_api_product_license', true ) ) {
+				return $tabs;
+			}
+		}
+
+		$tabs['about_plugin'] = array(
+			'title'     => __( 'About the plugin', 'license-wp' ),
+			'priority'  => 50,
+			'callback'  => array( $this, 'plugin_data_tab_content' )
+		);
+		return $tabs;
+	}
+
+	public function plugin_data_tab_content()  {
+		// The new tab content
+		$product_id = \get_the_ID();
+
+		// get WooCommerce product
+		$product = \wc_get_product( $product_id );
+
+		// get correct product id (variations etc.)
+		if ( 'product_variation' === get_post_type( $product_id ) ) {
+			$variation  = get_post( $product_id );
+			$product_id = $variation->post_parent;
+		} else {
+			$product_id = $product_id;
+		}
+
+		// get the api product ids
+		$api_product_ids = (array) json_decode( get_post_meta( $product_id, '_api_product_permissions', true ) );
+		
+		// array that stores the api products
+		$api_products = array();
+
+		// check and loop
+		if ( is_array( $api_product_ids ) && count( $api_product_ids ) > 0 ) {
+			foreach ( $api_product_ids as $api_product_id ) {
+				// create ApiProduct objects and store them in array
+				$api_products[] = license_wp()->service( 'api_product_factory' )->make( $api_product_id );
+			}
+		}
+
+		if ( count( $api_products ) > 0 ) {
+			foreach ( $api_products as $api_product ) {
+				echo '<h3>'. wp_kses_post( $api_product->get_name() ) .'</h3>';
+				echo '<table class="lwp-plugin-information">';
+					if( $rating_count >= 0 && false ){
+						echo '<tr class="lwp-plugin-information-attribute-item lwp-plugin-information-item--review-amount">';
+							echo '<th class="lwp-plugin-information-attributes-item__label">' . __('Number of Reviews') .'</th>';
+							echo '<td class="lwp-plugin-information-attributes-item__value">' . $review_count . '</td>';
+						echo '</tr>';
+						echo '<tr class="lwp-plugin-information-attribute-item lwp-plugin-information-item--average-rating">';
+							echo '<th class="lwp-plugin-information-attributes-item__label">' . __('Average Review Rating') .'</th>';
+							echo '<td class="lwp-plugin-information-attributes-item__value">' . $average . '</td>';
+						echo '</tr>';
+					}
+					if( !empty( $api_product->get_name() ) && false ){
+						echo '<tr class="lwp-plugin-information-attribute-item lwp-plugin-information-item--name">';
+							echo '<th class="lwp-plugin-information-attributes-item__label">' . __('Plugin Name') .'</th>';
+							echo '<td class="lwp-plugin-information-attributes-item__value">' . wp_kses_post( $api_product->get_name() ) . '</td>';
+						echo '</tr>';
+					}
+					if( !empty( $api_product->get_version() ) ){
+						echo '<tr class="lwp-plugin-information- lwp-plugin-information-item--version">';
+							echo '<th class="lwp-plugin-information-attributes-item__label">' . __('Latest Version') .'</th>';
+							echo '<td class="lwp-plugin-information-attributes-item__value">' . wp_kses_post( $api_product->get_version() ) . '</td>';
+						echo '</tr>';
+					}
+					if( !empty( $api_product->get_installation_instruction() ) ){
+						echo '<tr class="lwp-plugin-information-attribute-item lwp-plugin-information-attribute-item--date">';
+							echo '<th class="lwp-plugin-information-attributes-item__label">' . __('Get started') .'</th>';
+							echo '<td class="lwp-plugin-information-attributes-item__value"><a href="' . wp_kses_post( $api_product->get_installation_instruction() ) . '">' . wp_kses_post( $api_product->get_installation_instruction() ) . '</a></td>';
+						echo '</tr>';
+					}
+				echo '</table>';
+				echo '<style>.lwp-plugin-information--changelog ul {
+					list-style: initial;
+					padding-left: 20px;
+				}
+				
+				.lwp-plugin-information--changelog p {
+					margin: 20px 0 0;
+					font-weight: bold;
+				}</style>';
+				echo '<h3>'.__('Changelog','license-wp').'</h3>';
+				echo '<div class="lwp-plugin-information--changelog">';
+				$pattern = '/<p>(.|\n)*?<\/ul>/';
+				preg_match_all($pattern,\Parsedown::instance()->text( $api_product->get_changelog() ),$matches);
+			
+				echo $matches[0][0];
+				echo $matches[0][1];
+				echo $matches[0][2];
+				echo '</div>';
+				echo '<em>'.__('The three latest changelog entries are availible above.','license-wp').'</em>';
+				
+			}
+		}
+		
 	}
 
 	/**

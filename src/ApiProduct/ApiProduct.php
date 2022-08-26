@@ -48,6 +48,9 @@ class ApiProduct {
 	private $changelog = '';
 
 	/** @var string */
+	private $installation_instruction = '';
+
+	/** @var string */
 	private $icon_high = '';
 
 	/** @var string */
@@ -239,6 +242,20 @@ class ApiProduct {
 	 */
 	public function set_changelog( $changelog ) {
 		$this->changelog = $changelog;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function get_installation_instruction() {
+		return $this->installation_instruction;
+	}
+
+	/**
+	 * @param string $changelog
+	 */
+	public function set_installation_instruction( $installation_instruction ) {
+		$this->installation_instruction = $installation_instruction;
 	}
 
 	/**
