@@ -78,6 +78,9 @@ if ( sizeof( $licenses ) > 0 ) : ?>
 										if ( ! empty( $subscriptions ) ) {
 											
 											foreach ( $subscriptions as $subscription ) {
+												if ( ! $subscription->has_product( $license->get_product_id() ) ) {
+													continue;
+												}
 												if( $subscription->needs_payment() ){
 													$order = $subscription->get_last_order( 'all', array( 'renewal', 'switch' ) );
 													echo '<a class="button small" href="' . $order->get_checkout_payment_url() .'">' . __( 'Pay for Order #', 'license-wp' ) . $order->get_order_number(). '</a>';
