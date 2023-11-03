@@ -65,9 +65,41 @@ if ( sizeof( $licenses ) > 0 ) : ?>
 					}
 					?></td>
 				<td class="lwp_licenses_download"><?php
-					if ( $license->is_expired() ) {
-						echo '<a class="button lwp_button_renew" href="' . $license->get_renewal_url() . '">' . __( 'Renew License', 'license-wp' ) . '</a>';
-					} else {
+						if ( $license->is_expired() ) {
+							if(apply_filters('lwp_my_licenses_display_renew_button', true , $license, $wc_product)){
+								echo '<a class="button lwp_button_renew" href="' . $license->get_renewal_url() . '">' . __( 'Renew License', 'license-wp' ) . '</a>';
+							}else{
+								
+								if($license->get_order_id() > 0){
+									$order = wc_get_order( $license->get_order_id() );
+									if($order){
+										$subscriptions = wcs_get_subscriptions_for_order( $order );
+										
+										if ( ! empty( $subscriptions ) ) {
+											
+											foreach ( $subscriptions as $subscription ) {
+												if( $subscription->needs_payment() ){
+													$order = $subscription->get_last_order( 'all', array( 'renewal', 'switch' ) );
+													echo '<a class="button small" href="' . $order->get_checkout_payment_url() .'">' . __( 'Pay for Order #', 'license-wp' ) . $order->get_order_number(). '</a>';
+												}else{
+													echo '<a class="button">' . sprintf( __( 'Subscription #%d: ', 'woocommerce-subscriptions' ), $subscription->get_id() ). wcs_get_subscription_status_name( $subscription->get_status() ) . '</a>';
+													$current_status = $subscription->get_status();
+													if ( $subscription->can_be_updated_to( 'active' ) ) {
+														echo '<a class="button" href="' . wcs_get_users_change_status_link( $subscription->get_id(), 'active', $current_status ) . '">' . __( 'Reactivate', 'woocommerce-subscriptions' ) . '</a>';
+													}
+												}
+											}
+										}else{
+											echo '<a class="button" href="">' . __( 'License has expired', 'license-wp' ) . '</a>';
+										}
+									}else{
+										echo '<a class="button" href="">' . __( 'Order not found', 'license-wp' ) . '</a>';
+									}
+								}else{
+									echo '<a class="button" href="">' . __( 'No Related Order', 'license-wp' ) . '</a>';
+								}
+							}
+						} else {
 
 						// get API products
 						$api_products = $license->get_api_products();
