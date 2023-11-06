@@ -141,6 +141,9 @@ class License {
 	 * @param \DateTime|bool $date_expires or false if never expires
 	 */
 	public function set_date_expires( $date_expires ) {
+		if($date_expires == '0000-00-00 00:00:00'){
+			$date_expires = '';
+		}
 		$this->date_expires = $date_expires;
 	}
 

@@ -92,16 +92,16 @@ class Product {
 			foreach ( $api_products as $api_product ) {
 				echo '<h3>'. wp_kses_post( $api_product->get_name() ) .'</h3>';
 				echo '<table class="lwp-plugin-information">';
-					if( $rating_count >= 0 && false ){
-						echo '<tr class="lwp-plugin-information-attribute-item lwp-plugin-information-item--review-amount">';
-							echo '<th class="lwp-plugin-information-attributes-item__label">' . __('Number of Reviews','license-wp') .'</th>';
-							echo '<td class="lwp-plugin-information-attributes-item__value">' . $review_count . '</td>';
-						echo '</tr>';
-						echo '<tr class="lwp-plugin-information-attribute-item lwp-plugin-information-item--average-rating">';
-							echo '<th class="lwp-plugin-information-attributes-item__label">' . __('Average Review Rating','license-wp') .'</th>';
-							echo '<td class="lwp-plugin-information-attributes-item__value">' . $average . '</td>';
-						echo '</tr>';
-					}
+					// if( $rating_count >= 0 && false ){
+					// 	echo '<tr class="lwp-plugin-information-attribute-item lwp-plugin-information-item--review-amount">';
+					// 		echo '<th class="lwp-plugin-information-attributes-item__label">' . __('Number of Reviews','license-wp') .'</th>';
+					// 		echo '<td class="lwp-plugin-information-attributes-item__value">' . $review_count . '</td>';
+					// 	echo '</tr>';
+					// 	echo '<tr class="lwp-plugin-information-attribute-item lwp-plugin-information-item--average-rating">';
+					// 		echo '<th class="lwp-plugin-information-attributes-item__label">' . __('Average Review Rating','license-wp') .'</th>';
+					// 		echo '<td class="lwp-plugin-information-attributes-item__value">' . $average . '</td>';
+					// 	echo '</tr>';
+					// }
 					if( !empty( $api_product->get_name() ) && false ){
 						echo '<tr class="lwp-plugin-information-attribute-item lwp-plugin-information-item--name">';
 							echo '<th class="lwp-plugin-information-attributes-item__label">' . __('Plugin Name','license-wp') .'</th>';
