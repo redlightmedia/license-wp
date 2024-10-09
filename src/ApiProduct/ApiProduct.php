@@ -39,6 +39,9 @@ class ApiProduct {
 	private $requires_at_least = '';
 
 	/** @var string */
+	private $requires_php = '';
+
+	/** @var string */
 	private $tested_up_to = '';
 
 	/** @var string */
@@ -193,6 +196,20 @@ class ApiProduct {
 	 */
 	public function get_requires_at_least() {
 		return $this->requires_at_least;
+	}
+	
+	/**
+	 * @return string
+	 */
+	public function get_requires_php() {
+		return $this->requires_php;
+	}
+
+	/**
+	 * @param string $requires_at_least
+	 */
+	public function set_requires_php( $requires_php ) {
+		$this->requires_php = $requires_php;
 	}
 
 	/**

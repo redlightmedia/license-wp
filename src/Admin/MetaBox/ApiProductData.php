@@ -81,6 +81,10 @@ class ApiProductData {
 				'label'       => __( 'Tested up to', 'license-wp' ),
 				'placeholder' => __( 'e.g. 3.9', 'license-wp' )
 			),
+			'_requires_php_version' => array(
+				'label'       => __( 'Requires PHP version', 'license-wp' ),
+				'placeholder' => __( 'e.g. 3.8', 'license-wp' )
+			),
 			'content'              => array(
 				'label'       => __( 'Description', 'license-wp' ),
 				'placeholder' => __( 'Content describing the plugin', 'license-wp' ),

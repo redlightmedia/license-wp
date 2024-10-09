@@ -118,23 +118,28 @@ class Update {
 				case 'pluginupdatecheck' :
 				if( !empty($request['api_item_id']) ) {
 					$api_product = license_wp()->service( 'api_product_factory' )->make( $request['api_item_id'] );
-					$response->slug        = $request['api_product_id'];
-					$response->plugin      = $api_product->get_name();
-					$response->new_version = $api_product->get_version();
-					$response->url         = $api_product->get_uri();
-					$response->icons 	   = maybe_serialize(array(
+					$response->slug         = $request['api_product_id'];
+					$response->plugin       = $api_product->get_name();
+					$response->new_version  = $api_product->get_version();
+					$response->requires     = $api_product->get_requires_at_least();
+					$response->requires_php = $api_product->get_requires_php();
+					$response->tested   	= $api_product->get_tested_up_to();
+					$response->url          = $api_product->get_uri();
+					$response->icons 	    = maybe_serialize(array(
 						'1x'	=>	$api_product->get_icon_low(),
 						'2x'	=>	$api_product->get_icon_high()
 					));
 					$response->download_link = '';
 				}else{
-					$response->slug        = '';
-					$response->plugin      = '';
-					$response->new_version = '';
-					$response->url         = '';
-					$response->package     = '';
-
-					$response->package     = '';
+					$response->slug         = '';
+					$response->plugin       = '';
+					$response->new_version  = '';
+					$response->requires     = '';
+					$response->requires_php = '';
+					$response->tested   	= '';
+					$response->url          = '';
+					$response->package      = '';
+					$response->icons 	    = '';
 				}
 					
 					break;
@@ -163,6 +168,7 @@ class Update {
 							$response->author = $api_product->get_author();
 						}
 						$response->requires = $api_product->get_requires_at_least();
+						$response->requires_php = $api_product->get_requires_php();
 						$response->tested   = $api_product->get_tested_up_to();
 						$response->homepage = $api_product->get_uri();
 						$response->sections = array(
@@ -178,6 +184,7 @@ class Update {
 						$response->download_link = '';
 						$response->author        = '';
 						$response->requires      = '';
+						$response->requires_php  = '';
 						$response->tested        = '';
 						$response->homepage      = '';
 						$response->sections      = '';
@@ -206,6 +213,9 @@ class Update {
 		$data->plugin      = $request['plugin_name'];
 		$data->slug        = $request['api_product_id'];
 		$data->new_version = $api_product->get_version();
+		$data->requires     = $api_product->get_requires_at_least();
+		$data->requires_php = $api_product->get_requires_php();
+		$data->tested   	= $api_product->get_tested_up_to();
 		$data->url         = $api_product->get_uri();
 		$data->package     = $api_product->get_download_url( $license );
 		$data->icons 	   = maybe_serialize(array(
@@ -252,6 +262,7 @@ class Update {
 
 			// set properties
 			$data->requires = $api_product->get_requires_at_least();
+			$data->requires_php = $api_product->get_requires_php();
 			$data->tested   = $api_product->get_tested_up_to();
 			$data->homepage = $api_product->get_uri();
 			$data->banners 	   = maybe_serialize(array(

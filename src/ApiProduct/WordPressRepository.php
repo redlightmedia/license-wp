@@ -29,6 +29,7 @@ class WordPressRepository implements Repository {
 			$data->author            = get_post_meta( $post->ID, '_author', true );
 			$data->author_uri        = get_post_meta( $post->ID, '_author_uri', true );
 			$data->requires_at_least = get_post_meta( $post->ID, '_requires_wp_version', true );
+			$data->requires_php = get_post_meta( $post->ID, '_requires_php_version', true );
 			$data->tested_up_to      = get_post_meta( $post->ID, '_tested_wp_version', true );
 			$data->description       = $post->post_content;
 			$data->changelog         = get_post_meta( $post->ID, '_changelog', true );
@@ -86,6 +87,7 @@ class WordPressRepository implements Repository {
 		update_post_meta( $product->get_id(), '_author', $product->get_author() );
 		update_post_meta( $product->get_id(), '_author_uri', $product->get_author_uri() );
 		update_post_meta( $product->get_id(), '_requires_wp_version', $product->get_requires_at_least() );
+		update_post_meta( $product->get_id(), '_requires_php_version', $product->get_requires_php() );
 		update_post_meta( $product->get_id(), '_tested_wp_version', $product->get_tested_up_to() );
 		update_post_meta( $product->get_id(), '_changelog', $product->get_changelog() );
 		update_post_meta( $product->get_id(), '_installation_instruction', $product->get_installation_instruction() );
