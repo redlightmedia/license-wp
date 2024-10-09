@@ -83,6 +83,8 @@ class Activation {
 				
 				if (in_array($request['api_product_id'], $license_api_products_ids) == false) {
 					throw new ApiException( __( '<strong>Activation error:</strong> The numeric product ID doesnt match the license.', 'license-wp' ) , 111 );
+				}else{
+					$request['api_product_id'] = $api_product->get_slug();
 				}
 			}else{
 				$api_product = $license->get_api_product_by_slug( $request['api_product_id'] );
