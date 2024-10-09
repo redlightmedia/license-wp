@@ -70,7 +70,23 @@ class Activation {
 			}
 
 			// get api product by given api product id (slug)
-			$api_product = $license->get_api_product_by_slug( $request['api_product_id'] );
+			if( is_numeric( $request['api_product_id'] ) ){
+				$api_product = license_wp()->service( 'api_product_factory' )->make( $request['api_product_id'] );
+				// get api products linked to license
+				$license_api_products = $license->get_api_products();
+				$license_api_products_ids = array();
+				if ( count( $license_api_products ) > 0 ) {
+					foreach ( $license_api_products as $license_api_product ) {
+						$license_api_products_ids[] = $license_api_product->get_id();
+					}
+				}
+				
+				if (in_array($request['api_product_id'], $license_api_products_ids) == false) {
+					throw new ApiException( __( '<strong>Activation error:</strong> The numeric product ID doesnt match the license.', 'license-wp' ) , 111 );
+				}
+			}else{
+				$api_product = $license->get_api_product_by_slug( $request['api_product_id'] );
+			}
 
 			// check if license grants access to request api product
 			if ( null === $api_product ) {
