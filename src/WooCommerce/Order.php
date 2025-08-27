@@ -27,12 +27,21 @@ class Order {
 	 * @param int $order_id
 	 */
 	public function display_keys( $order_id ) {
+		//Check if the order is a renewal or resubscription if so, link to parent order
 		if ( get_post_meta( $order_id, 'has_api_product_license_keys', true ) ) {
-			?>
-			<li class="wide">
-				<a href="<?php echo admin_url( 'admin.php?page=license_wp_licenses&order_id=' . $order_id ); ?>"><?php _e( 'View license keys &rarr;', 'license-wp' ); ?></a>
-			</li>
-			<?php
+		
+		}
+		$subscriptions = self::get_order_subscriptions( $order_id );
+		if ( ! empty( $subscriptions ) ) {
+			foreach ( $subscriptions as $subscription ) {
+				// get parent order id
+				$parent_order_id = $subscription->get_parent_id();
+				?>
+				<li class="wide">
+					<a href="<?php echo admin_url( 'admin.php?page=license_wp_licenses&order_id=' . $parent_order_id ); ?>"><?php _e( 'View license keys &rarr;', 'license-wp' ); ?></a>
+				</li>
+				<?php
+			}
 		}
 	}
 

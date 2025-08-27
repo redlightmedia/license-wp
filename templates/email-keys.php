@@ -14,6 +14,9 @@
 				if ( count( $api_products ) > 0 ) {
 					echo '<ul class="digital-downloads">';
 					foreach ( $api_products as $api_product ) {
+						if( apply_filters('lwp_my_licenses_hide_download_link', false , $license, $wc_product, $api_product) ){
+							continue;
+						}
 						echo '<li><a class="lwp-download-button" href="' . $api_product->get_download_url( $license ) . '">' . sprintf( __( 'Download %s', 'license-wp' ), $api_product->get_name() ) . '</a></li>';
 					}
 					echo '</ul>';

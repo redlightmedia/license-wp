@@ -171,9 +171,16 @@ class Activation {
 
 			}
 		}
-
+		$activations = $license->get_activations( $api_product );
+		$active_non_staging = 0;
+		foreach ( $activations as $a ) {
+			if ( ! $this->is_staging_site( $a->get_instance() ) ) {
+				$active_non_staging++;
+			}
+		}
+		$is_staging_request = $this->is_staging_site( $request['instance'] );
 		// check if activation limit is reached and the requested instance isn't already activated
-		if ( $license->get_activation_limit() > 0 && count( $license->get_activations( $api_product ) ) >= $license->get_activation_limit() && ! in_array( $request['instance'], $existing_active_activation_instances ) ) {
+		if ( $license->get_activation_limit() > 0 && $active_non_staging >= $license->get_activation_limit() && ! in_array( $request['instance'], $existing_active_activation_instances ) && ! $is_staging_request 	 ) {
 			throw new ApiException( sprintf( __( '<strong>Activation error:</strong> Activation limit reached. Please deactivate another website or upgrade your license at your <a href="%s" target="_blank">My Account page</a>.', 'license-wp' ), get_permalink( get_option( 'woocommerce_myaccount_page_id' ) ) ), 105 );
 		}
 
@@ -222,7 +229,14 @@ class Activation {
 		}
 
 		// calculate activations left
-		$activations_left = ( ( $license->get_activation_limit() > 0 ) ? $license->get_activation_limit() - count( $license->get_activations( $api_product ) ) : - 1 );
+		$activations = $license->get_activations( $api_product );
+		$active_non_staging = 0;
+		foreach ( $activations as $a ) {
+			if ( ! $this->is_staging_site( $a->get_instance() ) ) {
+				$active_non_staging++;
+			}
+		}
+		$activations_left = ( ( $license->get_activation_limit() > 0 ) ? $license->get_activation_limit() - $active_non_staging : - 1 );
 
 		// response
 		$response = apply_filters( 'license_wp_api_activation_response', array(
@@ -289,5 +303,103 @@ class Activation {
 
 		throw new ApiException( __( 'Deactivation error: instance not found.', 'license-wp' ), 109 );
 
+	}
+
+	/**
+	 * Determine if an instance should be treated as a staging site.
+	 *
+	 * @param string $instance
+	 * @return bool
+	 */
+	private function is_staging_site( $instance ) {
+		$instance = strtolower( trim( $instance ) );
+		$instance = str_replace( array( 'http://', 'https://', 'www.' ), '', $instance );
+		if ( false !== strpos( $instance, '/' ) ) {
+			$host = substr( $instance, 0, strpos( $instance, '/' ) );
+		} else {
+			$host = $instance;
+		}
+
+		if ( ! apply_filters( 'license_wp_detect_staging', true, $host, $instance ) ) {
+			return false;
+		}
+
+		$is_staging = false;
+
+		if ( in_array( $host, array( 'localhost', '127.0.0.1', '::1' ), true ) ) {
+			$is_staging = true;
+		}
+
+		if ( ! $is_staging && filter_var( $host, FILTER_VALIDATE_IP ) && ! filter_var( $host, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE ) ) {
+			$is_staging = true;
+		}
+
+		$tlds = apply_filters( 'license_wp_staging_tlds', array( '.local', '.localhost', '.test', '.example', '.invalid' ) );
+		if ( ! $is_staging ) {
+			foreach ( $tlds as $tld ) {
+				if ( substr( $host, - strlen( $tld ) ) === $tld ) {
+					$is_staging = true;
+					break;
+				}
+			}
+		}
+
+		$hosting_patterns = apply_filters( 'license_wp_staging_hosting_patterns', array(
+			'.wpengine.com',
+			'.wpenginepowered.com',
+			'.instawp.xyz',
+			'.cloudwaysapps.com',
+			'.kinsta.cloud',
+			'.mwp.dev',
+			'.mwpstage.com',
+			'.godaddysites.com',
+			'.myftpupload.com',
+			'.flywheelsites.com',
+			'.getflywheel.com',
+			'.flywheelstaging.com',
+			'.bluehostwp.com',
+			'.previewdns.com',
+			'.sg-host.com',
+			'.siteground.biz',
+			'.hemsida.eu',
+			'.templweb.com',
+		) );
+		if ( ! $is_staging ) {
+			foreach ( $hosting_patterns as $pattern ) {
+				if ( substr( $host, - strlen( $pattern ) ) === $pattern ) {
+					$is_staging = true;
+					break;
+				}
+			}
+		}
+		// Example: beeweb-green.io, beeweb-anything.io but not beeweb.io
+		$regex_patterns = apply_filters( 'license_wp_staging_regex_patterns', array( '/beeweb-[^.]+\.io$/' ) );
+		if ( ! $is_staging ) {
+			foreach ( $regex_patterns as $regex ) {
+				if ( preg_match( $regex, $host ) ) {
+					$is_staging = true;
+					break;
+				}
+			}
+		}
+
+		if ( ! $is_staging ) {
+			$indicators = apply_filters( 'license_wp_staging_indicators', array( 'dev', 'development', 'test', 'testing', 'staging', 'stage', 'local' ) );
+			$parts	    = explode( '.', $host );
+			foreach ( $parts as $part ) {
+				if ( in_array( $part, $indicators, true ) ) {
+					$is_staging = true;
+					break;
+				}
+				foreach ( $indicators as $indicator ) {
+					if ( strpos( $part, $indicator . '-' ) === 0 ) {
+						$is_staging = true;
+						break 2;
+					}
+				}
+			}
+		}
+
+		return (bool) apply_filters( 'license_wp_is_staging_site', $is_staging, $host, $instance );
 	}
 }
